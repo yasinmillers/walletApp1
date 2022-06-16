@@ -40,10 +40,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password'], 'required'],
+            [['username', 'password','email'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['username', 'password'], 'string', 'max' => 200],
-            [['authKey', 'accessToken'], 'string', 'max' => 100],
+            [['authKey', 'accessToken','email'], 'string', 'max' => 100],
             [['first_name', 'last_name'], 'string', 'max' => 40, 'min' => 3],
         ];
     }
@@ -63,6 +63,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'last_name' => 'Last Name',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'email'=>'Email',
         ];
     }
 
