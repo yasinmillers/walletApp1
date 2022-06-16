@@ -65,6 +65,8 @@ AppAsset::register($this);
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
+    <?=tuyakhov\youtube\tube::widget()?>
+        <?=\tuyakhov\youtube\CodeValidator::widget()?>
     </div>
 </main>
 
