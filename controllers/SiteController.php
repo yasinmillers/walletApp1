@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\User;
+use phpDocumentor\Reflection\Types\This;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -74,16 +76,52 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        $request= Yii::$app->request;
+        $model = new User();
+        if ($request->isPost && $model->load($request->post())) {
+            $username = $model->username;
+            //check username
+            $check_1 = User::findByUsername($username);
+            if ($check_1){
+                // checking the password
+                $password = $check_1->password;
+                if ($check_1->validatePassword($model->password)){
+                    // the passwords are matching, login the user
+                    Yii::$app->user->login($check_1);
+                    Yii::$app->session->setFlash("success", "Logged in");
+                }else{
+                    Yii::$app->session->setFlash("error", "Mo user associated with the given password");
+                }
+            }else{
+                Yii::$app->session->setFlash("error", "Mo user associated with the given username");
+            }
             return $this->goBack();
         }
 
-        $model->password = '';
         return $this->render('login', [
             'model' => $model,
         ]);
+    }
+
+
+    /**
+     * @throws \yii\base\Exception
+     */
+    public function actionRegister()
+    {
+        $model = new User();
+        $request = Yii::$app->request;
+        if ($request->isPost && $model->load($request->post())){
+            $model->password = Yii::$app->security->generatePasswordHash($model->password);
+            $model->authKey = Yii::$app->security->generateRandomString(70).time();
+            $model->accessToken = time().Yii::$app->security->generateRandomString();
+            if ($model->save()){
+                Yii::$app->session->setFlash("success", "Account created successfully, login now");
+                return $this->redirect(['login']);
+            }
+        }
+
+        return $this->render('register', ['model' => $model]);
     }
 
     /**
