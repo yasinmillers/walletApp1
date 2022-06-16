@@ -163,4 +163,16 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+
+    public function actionVideo($id)
+    {
+
+
+        // renders a view named "view" and applies a layout to it
+        return $this->render('video', [
+
+        ]);
+    }
+
 }

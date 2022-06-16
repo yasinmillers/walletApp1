@@ -42,7 +42,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['username', 'password','email'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
-            [['username', 'password'], 'string', 'max' => 200],
+            [['username', 'password'], 'string', 'max' => 200],id
             [['authKey', 'accessToken','email'], 'string', 'max' => 100],
             [['first_name', 'last_name'], 'string', 'max' => 40, 'min' => 3],
         ];

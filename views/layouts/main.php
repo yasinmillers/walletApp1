@@ -65,14 +65,14 @@ AppAsset::register($this);
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    <?=tuyakhov\youtube\tube::widget()?>
-        <?=\tuyakhov\youtube\CodeValidator::widget()?>
+<!--    --><?//=tuyakhov\youtube\tube::widget()?>
+<!--        --><?//=\tuyakhov\youtube\CodeValidator::widget()?>
     </div>
 </main>
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
-        <p class="float-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="float-left">&copy;youtube <?= date('Y') ?></p>
         <p class="float-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
