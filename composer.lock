@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d90abb99c6f85705c2384d3029da7819",
+    "content-hash": "7a343594b67ff27437981e5ce1123784",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -975,6 +975,50 @@
                 }
             ],
             "time": "2022-05-24T11:49:31+00:00"
+        },
+        {
+            "name": "tuyakhov/yii2-youtube",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tuyakhov/yii2-youtube.git",
+                "reference": "5814ee2c61b27bc96399fa2bd02992324f1f8d5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tuyakhov/yii2-youtube/zipball/5814ee2c61b27bc96399fa2bd02992324f1f8d5b",
+                "reference": "5814ee2c61b27bc96399fa2bd02992324f1f8d5b",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "tuyakhov\\youtube\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Tuyakhov",
+                    "email": "atuyakhov@gmail.com"
+                }
+            ],
+            "description": "Yii2 youtube extension",
+            "keywords": [
+                "extension",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/tuyakhov/yii2-youtube/issues",
+                "source": "https://github.com/tuyakhov/yii2-youtube/tree/master"
+            },
+            "time": "2015-04-01T15:15:35+00:00"
         },
         {
             "name": "yiisoft/yii2",
