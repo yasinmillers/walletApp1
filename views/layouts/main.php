@@ -26,7 +26,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <header>
-
+ <?= $this->render('header') ?>
 </header>
 
 <main role="main" class="flex-shrink-0">
