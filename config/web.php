@@ -9,8 +9,8 @@ $config = [
             'class' => 'dektrium\user\Module',
         ],
     ],
-
     'id' => 'basic',
+    'name'=>'YouTube',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
