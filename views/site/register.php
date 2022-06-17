@@ -26,17 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-        <?= $form->field($model, 'first_name')->textInput(['autofocus' => true, 'required' => true]) ?>
-        <?= $form->field($model, 'last_name')->textInput(['autofocus' => true, 'required' => true]) ?>
+    <?= $form->field($model, 'first_name')->textInput(['autofocus' => true, 'required' => true]) ?>
+    <?= $form->field($model, 'last_name')->textInput(['autofocus' => true, 'required' => true]) ?>
     <?= $form->field($model, 'email') ?>
-        <?= $form->field($model, 'username') ?>
-        <?= $form->field($model, 'password')->passwordInput() ?>
+    <?= $form->field($model, 'username') ?>
+    <?= $form->field($model, 'password')->passwordInput() ?>
 
-        <div class="form-group">
-            <div class="offset-lg-1 col-lg-11">
-                <?= Html::submitButton('Register', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
+    <div class="form-group">
+        <div class="offset-lg-1 col-lg-11">
+            <?= Html::submitButton('Register', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
         </div>
+    </div>
 
     <?php ActiveForm::end(); ?>
 
