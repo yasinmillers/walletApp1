@@ -165,7 +165,7 @@ class SiteController extends Controller
     }
 
 
-    public function actionVideo($id)
+    public function actionVideo()
     {
 
 
