@@ -1,10 +1,7 @@
 <?php?>
-<div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-    The current link item
-</a>
-  <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-  <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-  <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-  <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
+<div class="list-group col-2 ">
+  <a href="<?= \yii\helpers\Url::to(['/']) ?>" class="list-group-item list-group-item-action"> All videos</a>
+  <a href="#" class="list-group-item list-group-item-action">Liked</a>
+  <a href="#" class="list-group-item list-group-item-action">Saved</a>
+  <a class="list-group-item list-group-item-action disabled">Create</a>
 </div>
