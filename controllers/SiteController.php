@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use app\models\User;
+use app\models\Video;
 use phpDocumentor\Reflection\Types\This;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -62,8 +64,22 @@ class SiteController extends Controller
      * @return string
      */
     public function actionIndex()
+    {$model = new Video();
+        // fetched all videos from all the db
+        $videos = Video::find()->orderBy('created_at DESC');
+        $dataProvider = new ActiveDataProvider([
+            'query' => $videos,
+            'pagination' => ['pageSize' => 16]
+        ]);
+        return $this->render('index', ['dataProvider' => $dataProvider]);
+    }
+
+    public function actionCreate()
     {
-        return $this->render('index');
+        $model = new Video();
+
+        return $this->render('index', ['model' => $model]);
+        //TODO create a video form submit it,upload the video and redirect to index page
     }
 
     /**
@@ -132,7 +148,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 
