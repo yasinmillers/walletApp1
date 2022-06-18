@@ -25,21 +25,18 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header>
- <?= $this->render('header') ?>
-</header>
+<div class="wrap h=100 d-flex flex-column">
+    <?= $this->render('header') ?>
 
-<main role="main" class="flex-shrink-0">
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-<!--    --><?//=tuyakhov\youtube\tube::widget()?>
-<!--        --><?//=\tuyakhov\youtube\CodeValidator::widget()?>
-    </div>
-</main>
+    <main role="main" class="row w-100 pt-2 mt-5">
+        <?= $this->render('sidebar') ?>
+        <div class="content-wrapper clearfix col-10 ">
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
+    </main>
+</div>
+
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
