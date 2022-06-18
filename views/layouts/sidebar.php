@@ -3,5 +3,5 @@
   <a href="<?= \yii\helpers\Url::to(['/']) ?>" class="list-group-item list-group-item-action"> All videos</a>
   <a href="#" class="list-group-item list-group-item-action">Liked</a>
   <a href="#" class="list-group-item list-group-item-action">Saved</a>
-  <a class="list-group-item list-group-item-action disabled">Create</a>
+  <a href="<?= \yii\helpers\Url::to(['video/create']) ?>" class="list-group-item list-group-item-action">Create</a>
 </div>
