@@ -10,10 +10,10 @@ use yii\bootstrap4\Html;
 $this->title = 'Register';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
+<div class="">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to register:</p>
+    <p>upload video:</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'register-form',
