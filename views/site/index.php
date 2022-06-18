@@ -22,25 +22,3 @@ $this->title = 'YouTube';
         ]
     ])
 ?>
-
-<?php $form = ActiveForm::begin([
-    'id' => 'video_form',
-    'layout' => 'horizontal',
-    'fieldConfig' => [
-        'template' => "{label}\n{input}\n{error}",
-        'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
-        'inputOptions' => ['class' => 'col-lg-3 form-control'],
-        'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
-    ],
-]); ?>
-
-<?= $form->field($model, 'VideoTitle')->textInput(['autofocus' => true, 'required' => true]) ?>
-<?= $form->field($model, 'Description')->textInput(['autofocus' => true, 'required' => true]) ?>
-<div class="form-group">
-    <div class="offset-lg-1 col-lg-11">
-        <label for="formFileLg" class="form-label">Upload Video</label>
-        <input class="form-control form-control-lg" id="formFileLg" type="file" />
-    </div>
-
-</div>
-<?php ActiveForm::end(); ?>
