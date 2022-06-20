@@ -24,6 +24,11 @@ use Yii;
 class Video extends \yii\db\ActiveRecord
 {
     /**
+     * @var string
+     */
+    public $video_id;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -107,6 +112,26 @@ class Video extends \yii\db\ActiveRecord
         return new VideoQuery(get_called_class());
     }
     public function save($runValidation = true, $attributeNames = null){
+        $isInsert = $this->isNewRecord;
+        if ($isInsert) {
+            $this->video_id = Yii::$app->security->generateRandomString(8);
+            $this->title = $this->video->name;
+            $this->video_name = $this->video->name;
+        }
+        if ($this->thumbnail) {
+            $this->has_thumbnail = 1;
+        }
+        $saved = parent::save($runValidation, $attributeNames);
+        if (!$saved) {
+            return false;
+        }
+        if ($isInsert) {
+            $videoPath = Yii::getAlias('@frontend/web/storage/videos/' . $this->video_id . '.mp4');
+            if (!is_dir(dirname($videoPath))) {
+                FileHelper::createDirectory(dirname($videoPath));
+            }
+            $this->video->saveAs($videoPath);
+        }
 
     }
 }
