@@ -7,6 +7,8 @@ use Yii;
 /**
  * This is the model class for table "video".
  *
+ * @property string      $video_id
+ * @property string      $video_name
  * @property int $id
  * @property string $title
  * @property string|null $description
@@ -118,9 +120,6 @@ class Video extends \yii\db\ActiveRecord
             $this->title = $this->video->name;
             $this->video_name = $this->video->name;
         }
-        if ($this->thumbnail) {
-            $this->has_thumbnail = 1;
-        }
         $saved = parent::save($runValidation, $attributeNames);
         if (!$saved) {
             return false;
@@ -135,3 +134,4 @@ class Video extends \yii\db\ActiveRecord
 
     }
 }
+
