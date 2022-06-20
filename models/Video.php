@@ -106,4 +106,7 @@ class Video extends \yii\db\ActiveRecord
     {
         return new VideoQuery(get_called_class());
     }
+    public function save($runValidation = true, $attributeNames = null){
+
+    }
 }
