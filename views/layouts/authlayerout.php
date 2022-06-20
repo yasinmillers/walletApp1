@@ -29,7 +29,6 @@ AppAsset::register($this);
     <?= $this->render('header') ?>
 
     <main role="main" class="row w-100 pt-2 mt-5">
-        <?= $this->render('sidebar') ?>
         <div class="content-wrapper clearfix col-10 ">
             <?= Alert::widget() ?>
             <?= $content ?>

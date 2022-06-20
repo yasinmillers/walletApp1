@@ -89,6 +89,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout='authlayerout';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -125,6 +126,7 @@ class SiteController extends Controller
      */
     public function actionRegister()
     {
+        $this->layout='authlayerout';
         $model = new User();
         $request = Yii::$app->request;
         if ($request->isPost && $model->load($request->post())){

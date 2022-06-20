@@ -2,6 +2,7 @@
 
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use yii\helpers\Html;
 
 NavBar::begin([
     'brandLabel' => Yii::$app->name,

@@ -1,9 +1,17 @@
 <?php
 /* @var $this yii\web\View */
-?>
-<h1>video/view</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+use tuyakhov\youtube\EmbedWidget;
+
+?>
+<?= EmbedWidget::widget([
+'code' => 'vs5ZF9fRDzA',
+'playerParameters' => [
+'controls' => 2
+],
+'iframeOptions' => [
+'width' => '600',
+'height' => '450'
+]
+]);
+?>
