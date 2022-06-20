@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "video".
  *
- * @property string      $video_id
- * @property string      $video_name
+ * @property string $video_id
+ * @property string $video_name
  * @property int $id
  * @property string $title
  * @property string|null $description
