@@ -9,6 +9,7 @@ class VideoController extends \yii\web\Controller
     public function actionCreate()
     {
         $model = new Video();
+        $model->video =UnploadedFile::getInstanceByName(name:'video');
         if (\Yii::$app->request->isPost && $model->load(\Yii::$app->request->post())){
 
         }
