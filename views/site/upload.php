@@ -1,6 +1,6 @@
 <?php
 
-   use yii\widgets\ActiveForm;
+   use yii\bootstrap4\ActiveForm;
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']])?>
 <?= $form->field($model, 'image')->fileInput() ?>
