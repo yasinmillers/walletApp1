@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\UploadImageForm;
 use app\models\User;
 use app\models\Video;
 use phpDocumentor\Reflection\Types\This;
