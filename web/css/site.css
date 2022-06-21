@@ -96,3 +96,10 @@ a.desc:after {
     justify-content: center;
 align-items: center;
 }
+.upload{
+    flex: border-box;
+    align-items: center;
+    color: #e0a800;
+    background-color: lightyellow;
+
+}
