@@ -63,8 +63,8 @@ $config = [
             ],
         ],
         'assetManager'=>[
-            'append Timestamp'=>true,
-        ],
+            'appendTimestamp'=>true
+        ]
 
     ],
     'params' => $params,
