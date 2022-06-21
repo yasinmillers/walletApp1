@@ -103,3 +103,11 @@ align-items: center;
     background-color: lightyellow;
 
 }
+.upload-icon {
+    height: 200px;
+    width: 200px;
+    border-radius: 50px;
+    background: #e0e0e0;
+    display: flex;
+
+}
