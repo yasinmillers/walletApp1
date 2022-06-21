@@ -18,6 +18,7 @@ echo Nav::widget([
 
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'About', 'url' => ['/site/about']],
+        ['label' => 'image-upload', 'url' => ['/site/upload']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
 
         Yii::$app->user->isGuest ? (
