@@ -9,12 +9,11 @@ class VideoController extends \yii\web\Controller
     public function actionCreate()
     {
         $model = new Video();
-        $model->video =UnploadedFile::getInstanceByName(name:'video');
-        if (\Yii::$app->request->isPost && $model->load(\Yii::$app->request->post()&& $model->save())){
-
-
-        return $this->render('create', ['model' => $model]);
+        $model->video =UploadedFile::getInstanceByName(name:'video');
+        if (\Yii::$app->request->isPost && $model->load(\Yii::$app->request->post())&& $model->save()){
+return $this->redirect(['view','id'=>$model->video_id]);
         }
+        return $this->render('create', ['model' => $model]);
     }
 
     public function actionDelete()
