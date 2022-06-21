@@ -192,4 +192,20 @@ class SiteController extends Controller
         ]);
     }
 
+
+
+    public function actionUploadImage() {
+        $model = new UploadImageForm();
+        if (Yii::$app->request->isPost) {
+            $model->image = UploadedFile::getInstance($model, 'image');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                echo "File successfully uploaded";
+                return;
+            }
+        }
+        return $this->render('upload', ['model' => $model]);
+    }
+
+
 }
