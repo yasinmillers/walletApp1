@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 
 use tuyakhov\youtube\EmbedWidget;
-
+echo Yii::getAlias("@uploads");
 ?>
 <?= EmbedWidget::widget([
 'code' => 'vs5ZF9fRDzA',

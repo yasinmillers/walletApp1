@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Exception;
+use yii\helpers\FileHelper;
 
 /**
  * This is the model class for table "video".
@@ -113,25 +115,30 @@ class Video extends \yii\db\ActiveRecord
     {
         return new VideoQuery(get_called_class());
     }
-    public function save($runValidation = true, $attributeNames = null){
-        $isInsert = $this->isNewRecord;
-        if ($isInsert) {
-            $this->video_id = Yii::$app->security->generateRandomString(10);
-            $this->title = $this->video->name;
-            $this->video_name = $this->video->name;
-        }
-        $saved = parent::save($runValidation, $attributeNames);
-        if (!$saved) {
-            return false;
-        }
-        if ($isInsert) {
-            $videoPath = Yii::getAlias('/web/storage/videos/' . $this->video_id );
-            if (!is_dir(dirname($videoPath))) {
-                FileHelper::createDirectory(dirname($videoPath));
-            }
-            $this->video->saveAs($videoPath);
-        }
 
+    /**
+     * @throws Exception
+     * @throws \yii\base\Exception
+     */
+    public function upload()
+    {
+        $file = $this->upload;
+        $name = time()."_".Yii::$app->security->generateRandomString(15).".".$file->extension;
+            // 17843032938_djghvue7493ffv@@93nfkfhvdbbg.jpeg
+        $path =Yii::getAlias("@uploads")."/videos";
+        // walletApp/web/uploads
+        if (!FileHelper::createDirectory($path)){
+            throw new Exception("Problem saving your fil to the intended destination");
+        }
+        chmod((string) $path, "0777");
+        $file_path = $path.$name; // waleltApp/web/uploads/17843032938_djghvue7493ffv@@93nfkfhvdbbg.jpeg
+        Yii::trace($file_path);
+        if ($file->saveAs($file_path)){
+            $this->video = $name;
+            $this->video_url = $path.$name;
+            return true;
+        }
+       return false;
     }
 }
 

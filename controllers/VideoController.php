@@ -3,15 +3,25 @@
 namespace app\controllers;
 
 use app\models\Video;
+use Yii;
+use yii\web\UploadedFile;
 
 class VideoController extends \yii\web\Controller
 {
+    /**
+     * @throws \yii\base\Exception
+     * @throws \yii\db\Exception
+     */
     public function actionCreate()
     {
         $model = new Video();
-        $model->video =UploadedFile::getInstanceByName(name:'video');
-        if (\Yii::$app->request->isPost && $model->load(\Yii::$app->request->post())&& $model->save()){
-return $this->redirect(['view','id'=>$model->video_id]);
+        if (Yii::$app->request->isPost && $model->load(\Yii::$app->request->post())){
+            $model->upload =UploadedFile::getInstance($model, 'upload');
+            if ($model->upload() && $model->save(false)){
+                Yii::$app->session->setFlash("success", "Video uploaded successfully");
+                return $this->refresh();
+            }
+            return $this->redirect(['view','id'=>$model->video_id]);
         }
         return $this->render('create', ['model' => $model]);
     }
