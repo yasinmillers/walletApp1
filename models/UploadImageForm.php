@@ -7,7 +7,7 @@ class UploadImageForm extends Model {
     public $image;
     public function rules() {
         return [
-            [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png'],
+            [['image'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, mp3'],
         ];
     }
     public function upload() {
