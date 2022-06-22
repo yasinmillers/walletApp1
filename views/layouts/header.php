@@ -9,7 +9,7 @@ NavBar::begin([
 
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
-        'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+        'class' => '"navbar navbar-expand-md navbar-light bg-success fixed-top',
     ],
 ]);
 echo Nav::widget([
