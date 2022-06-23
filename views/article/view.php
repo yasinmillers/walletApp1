@@ -36,5 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
         ],
     ]) ?>
+    <h2><?= Html::encode($model->title);?></h2>
 
 </div>
