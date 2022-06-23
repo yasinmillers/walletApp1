@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Article;
 use app\models\ArticleSearch;
+use yii\behaviors\TimestampBehavior;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -25,8 +26,10 @@ class ArticleController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+
                     ],
                 ],
+                TimestampBehavior::className(),
             ]
         );
     }
