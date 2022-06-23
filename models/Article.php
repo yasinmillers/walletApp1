@@ -32,6 +32,7 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::class,
+            BlameableBehavior::class
         ];
     }
 
