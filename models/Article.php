@@ -48,6 +48,7 @@ class Article extends \yii\db\ActiveRecord
             [['created_by','created_at','updated_by','updated_at'], 'integer'],
             [['title'], 'string', 'max' => 100],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
