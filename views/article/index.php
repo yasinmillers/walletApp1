@@ -25,14 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= \yii\widgets\ListView::widget([
         'dataProvider' => $dataProvider,
-        'itemView' => '_single_article_small',
+        'itemView' => '_article_item',
         'options' => [
                 'class' => "row"
         ],
         'layout' => "{items}\n{pager}",
         'itemOptions' => [
-                'tag' => 'div',
-                'class' => "col-lg-3 col-md-4 col-sm-6 col-xs-12"
+                //'tag' => 'div',
+                //'class' => "col-lg-3 col-md-4 col-sm-6 col-xs-12"
         ]
 
     ]); ?>
