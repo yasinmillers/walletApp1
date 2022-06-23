@@ -4,8 +4,10 @@ namespace app\controllers;
 
 use app\models\Article;
 use app\models\ArticleSearch;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -98,13 +100,17 @@ class ArticleController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException|ForbiddenHttpException if the model cannot be found
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($model->created_by !== Yii::$app->user->id){
+            throw new ForbiddenHttpException("You do not have permission to edit this article");
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -119,10 +125,15 @@ class ArticleController extends Controller
      * @param int $id ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if ($model->created_by !== Yii::$app->user->id){
+            throw new ForbiddenHttpException("You do not have permission to delete this article");
+        }
+        $model->delete();
 
         return $this->redirect(['index']);
     }
