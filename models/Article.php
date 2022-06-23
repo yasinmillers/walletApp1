@@ -63,7 +63,7 @@ class Article extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
-            'updated_by' => 'Updated At',
+            'updated_by' => 'Updated BY',
         ];
     }
 
@@ -79,8 +79,13 @@ class Article extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return ArticleQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery the active query used by this AR class.
+     *
      */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
     public static function find()
     {
         return new ArticleQuery(get_called_class());
