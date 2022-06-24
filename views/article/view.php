@@ -57,7 +57,9 @@ $this->params['breadcrumbs'][] = $this->title;
                           name="comment"
                           placeholder="Add a comment"></textarea>
                 <div class="action-buttons text-right mt-2">
+
                     <button type="button" class="btn btn-danger btn-danger">Cancel</button>
+
                     <button class="btn btn-primary btn-save">Comment</button>
                 </div>
                 </form>
