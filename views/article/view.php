@@ -13,24 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-view">
 
-    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id === $model->created_by): ?>
-        <p>
-            <?php echo Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?php echo Html::a('Delete', ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
-                    'method' => 'post',
-                ],
-            ]) ?>
-        </p>
-    <?php endif ?>
 
     <div>
         <h1><?php echo Html::encode($model->title) ?></h1>
         <p class="text-muted">
             <small>
                 Created at: <?php echo Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+                By: <?php echo $model->createdBy->username ?>
 
             </small>
         </p>
@@ -40,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 </div>
-<p>
+<p class="btn mt-4">
     <?php
     if (!Yii::$app->user->isGuest):
     echo Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -53,12 +42,27 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
     endif;
     ?>
-    <?php if(isset($_POST['previewComment']) && !$comment->hasErrors()): ?>
-    <h3>Preview</h3>
-    <div class="comment">
-        <div class="author"><?php echo $comment->authorLink; ?> says:</div>
-        <div class="time"><?php echo date('F j, Y \a\t h:i a',$comment->createTime); ?></div>
-        <div class="content"><?php echo $comment->contentDisplay; ?></div>
-    </div><!-- post preview -->
-<?php endif; ?>
 </p>
+<div class="comments mt-4">
+    <h4 class="mb-3"> <span id="comment-count"></span> Comments</h4>
+    <div class="create-comment mb-4">
+        <div class="media">
+            <img class="mr-3 comment-avatar" src="/img/avatar.png" alt="">
+            <div class="media-body">
+                <form class="create-comment-form" method="post"
+
+                <input type="hidden" name="video_id" value="">
+                <textarea rows="1"
+                          class="form-control comment-input"
+                          name="comment"
+                          placeholder="Add a comment"></textarea>
+                <div class="action-buttons text-right mt-2">
+                    <button type="button" class="btn btn-danger btn-danger">Cancel</button>
+                    <button class="btn btn-primary btn-save">Comment</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
