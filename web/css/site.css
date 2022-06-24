@@ -25,6 +25,12 @@ main{
 .comment-avatar{
 width: 50px;
 }
+.cancel-avatar{
+    width: 20px;
+}
+.comment1-avatar{
+    width: 20px;
+}
 
 .not-set {
     color: #c55;
