@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id === $model->created_by): ?>
         <p>
-            <?php echo Html::a('Update', ['update', 'slug' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?php echo Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?php echo Html::a('Delete', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
@@ -41,12 +41,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 <p>
-    <?php echo Html::a('Update', ['update', 'slug' => $model->id], ['class' => 'btn btn-primary']) ?>
+    <?php
+    if (!Yii::$app->user->isGuest):
+    echo Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
     <?php echo Html::a('Delete', ['delete', 'id' => $model->id], [
         'class' => 'btn btn-danger',
         'data' => [
             'confirm' => 'Are you sure you want to delete this item?',
             'method' => 'post',
         ],
-    ]) ?>
+    ]);
+    endif;
+    ?>
 </p>
