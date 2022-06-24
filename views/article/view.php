@@ -53,4 +53,12 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
     endif;
     ?>
+    <?php if(isset($_POST['previewComment']) && !$comment->hasErrors()): ?>
+    <h3>Preview</h3>
+    <div class="comment">
+        <div class="author"><?php echo $comment->authorLink; ?> says:</div>
+        <div class="time"><?php echo date('F j, Y \a\t h:i a',$comment->createTime); ?></div>
+        <div class="content"><?php echo $comment->contentDisplay; ?></div>
+    </div><!-- post preview -->
+<?php endif; ?>
 </p>
