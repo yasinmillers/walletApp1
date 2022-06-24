@@ -37,5 +37,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'pinned',
         ],
     ]) ?>
+    <div class="comments mt-5">
+        <h4 class="mb-3"> <span id="comment-count"></span> Comments</h4>
+        <div class="create-comment mb-4">
+            <div class="media">
+                <img class="mr-3 comment-avatar" src="/img/avatar.png" alt="">
+                <div class="media-body">
+                    <form class="create-comment-form" method="post"
+
+                        <input type="hidden" name="video_id" value="">
+                        <textarea rows="1"
+                                  class="form-control comment-input"
+                                  name="comment"
+                                  placeholder="Add a public comment"></textarea>
+                        <div class="action-buttons text-right mt-2">
+                            <button type="button" class="btn btn-light btn-cancel">Cancel</button>
+                            <button class="btn btn-primary btn-save">Comment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </div>
