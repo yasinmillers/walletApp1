@@ -22,6 +22,9 @@ main{
     padding-right: 15px;
     padding-left: 15px;
 }
+.comment-avatar{
+width: 50px;
+}
 
 .not-set {
     color: #c55;
