@@ -18,6 +18,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $updated_by
  *
  * @property User $createdBy
+ * @property Comment[] $comments
  */
 class Article extends \yii\db\ActiveRecord
 {
@@ -88,6 +89,11 @@ class Article extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['article_id' => 'id']);
     }
     public static function find()
     {
