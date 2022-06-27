@@ -92,7 +92,13 @@ class ArticleController extends Controller
         $model = new Article();
         $model->created_by = Yii::$app->user->id;
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $model->save();
+                $title=$model->title;
+                $image=UploadedFile::getInstance($model,'image');
+                $imgName= 'article.'$title . '.'.$image->getExtension();
+                $image->saveAs('.'$imgName);
+
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
