@@ -44,16 +44,19 @@ class ApiController extends \yii\rest\Controller
             $second_name =$this::request()->post('second_name');
             $email =$this::request()->post('email');
             $username = $this::request()->post('username');
-            $req_password = $this::request()->post('password');
+            $password= Yii::$app->security->generatePasswordHash('password');
+            $this->request->authKey = Yii::$app->security->generateRandomString(70).time();
+            $this->request->accessToken = time().Yii::$app->security->generateRandomString();
 
-            $model->password = Yii::$app->security->generatePasswordHash($model->password);
-            $model->authKey = Yii::$app->security->generateRandomString(70).time();
-            $model->accessToken = time().Yii::$app->security->generateRandomString();
-            if ($model->save()){
-                Yii::$app->session->setFlash("success", "Account created successfully, login now");
-                return $this->redirect(['login']);
+
+            //$password = Yii::$app->security->generatePasswordHash(password);
+            //$this->request->authKey = Yii::$app->security->generateRandomString(70).time();
+            //$this->request->accessToken = time().Yii::$app->security->generateRandomString();
+
+            $save_1= User::updateAll($first_name,$second_name,$email,$username,$password,authkey,accessToken);
+
             }
+
         }
     }
 
-}
