@@ -8,6 +8,7 @@ use app\models\Comment;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
