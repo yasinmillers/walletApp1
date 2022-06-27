@@ -49,22 +49,23 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="media">
             <img class="mr-3 comment-avatar" src="/img/avatar.png" alt="">
             <div class="media-body">
-                <form class="create-comment-form" method="post"
-
-                <input type="hidden" name="video_id" value="">
-                <textarea rows="1"
-                          class="form-control comment-input"
-                          name="comment"
-                          placeholder="Add a comment"></textarea>
-                <div class="action-buttons text-right mt-2">
-
-                    <button type="button" class="btn btn-danger btn-danger">Cancel</button>
-
-                    <button class="btn btn-primary btn-save">Comment</button>
-                </div>
-                </form>
+                <?= $this->render('/comment/_form', ['model' => $commentModel]) ?>
             </div>
         </div>
     </div>
 
 </div>
+
+<?php foreach ($model->comments as $comment): ?>
+<div class="card mr-1" >
+    <div class="card-header ">
+        <h2 class="card-title">
+            Comment by <?= $comment->createdBy->username ?>,  <?= Yii::$app->formatter->asRelativeTime($comment->created_at)?>
+        </h2>
+    </div>
+    <div class="card-body card-text" >
+        <?= $comment->body ?>
+    </div>
+</div>
+<?php endforeach; ?>
+
