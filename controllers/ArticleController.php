@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Article;
 use app\models\ArticleSearch;
+use app\models\Comment;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\web\Controller;
@@ -68,8 +69,15 @@ class ArticleController extends Controller
      */
     public function actionView($id)
     {
+        $comment = new Comment();
+        $comment->article_id = $id;
+        $comment->created_by = Yii::$app->user->id;
+        if (Yii::$app->request->isPost && $comment->load($this->request->post()) && $comment->save()){
+            return $this->refresh();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'commentModel' => $comment
         ]);
     }
 
