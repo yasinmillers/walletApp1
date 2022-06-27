@@ -37,6 +37,10 @@ class ApiController extends \yii\rest\Controller
             }
         }
     }
+
+    /**
+     * @throws \yii\base\Exception
+     */
     public function actionRegister(){
 
         if ($this::request()->isPost){
@@ -44,17 +48,21 @@ class ApiController extends \yii\rest\Controller
             $second_name =$this::request()->post('second_name');
             $email =$this::request()->post('email');
             $username = $this::request()->post('username');
-            $password= Yii::$app->security->generatePasswordHash('password');
-            $this->request->authKey = Yii::$app->security->generateRandomString(70).time();
-            $this->request->accessToken = time().Yii::$app->security->generateRandomString();
-
-
-            //$password = Yii::$app->security->generatePasswordHash(password);
-            //$this->request->authKey = Yii::$app->security->generateRandomString(70).time();
-            //$this->request->accessToken = time().Yii::$app->security->generateRandomString();
-
-            $save_1= User::updateAll($first_name,$second_name,$email,$username,$password,authkey,accessToken);
-
+            $password = $this::request()->post('password');
+            $hashed_password= Yii::$app->security->generatePasswordHash($password);
+            $authKey = Yii::$app->security->generateRandomString(70).time();
+            $accessToken = time().Yii::$app->security->generateRandomString();
+            $user = new User();
+            $user->first_name = $first_name;
+            $user->email=$email;
+            $user->password=$hashed_password;
+            $user->username=$username;
+            $user->authKey = $authKey;
+            $user->accessToken=$accessToken;
+            $user->last_name = $second_name;
+            if ($user->save()){
+                return ['success' => "User created", 'user' => $user];
+            }
             }
 
         }
