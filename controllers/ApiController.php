@@ -39,6 +39,21 @@ class ApiController extends \yii\rest\Controller
     }
     public function actionRegister(){
 
+        if ($this::request()->isPost){
+            $first_name =$this::request()->post('first_name');
+            $second_name =$this::request()->post('second_name');
+            $email =$this::request()->post('email');
+            $username = $this::request()->post('username');
+            $req_password = $this::request()->post('password');
+
+            $model->password = Yii::$app->security->generatePasswordHash($model->password);
+            $model->authKey = Yii::$app->security->generateRandomString(70).time();
+            $model->accessToken = time().Yii::$app->security->generateRandomString();
+            if ($model->save()){
+                Yii::$app->session->setFlash("success", "Account created successfully, login now");
+                return $this->redirect(['login']);
+            }
+        }
     }
 
 }
