@@ -103,7 +103,6 @@ class SiteController extends Controller
             $check_1 = User::findByUsername($username);
             if ($check_1){
                 // checking the password
-                $password = $check_1->password;
                 if ($check_1->validatePassword($model->password)){
                     // the passwords are matching, login the user
                     Yii::$app->user->login($check_1);
@@ -121,7 +120,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
 
     /**
      * @throws \yii\base\Exception
