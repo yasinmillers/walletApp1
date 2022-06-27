@@ -9,10 +9,10 @@ use Yii;
  *
  * @property int $id
  * @property string $body
- * @property int|null $created_at
- * @property int|null $created_by
- * @property int|null $article_id
- * @property int|null $pinned
+ * @property int $created_at
+ * @property int $created_by
+ * @property int $article_id
+ * @property bool $pinned
  *
  * @property Article $article
  * @property User $createdBy
@@ -33,9 +33,8 @@ class Comment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['body'], 'required'],
-            [['created_at', 'created_by', 'article_id', 'pinned'], 'default', 'value' => null],
-            [['created_at', 'created_by', 'article_id', 'pinned'], 'integer'],
+            [['body', 'article_id', 'created_by'], 'required'],
+            [['created_by', 'article_id'], 'integer'],
             [['body'], 'string', 'max' => 1000],
             [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Article::className(), 'targetAttribute' => ['article_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
