@@ -12,6 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id
  * @property string $title
  * @property string|null $body
+ * @property string|null $image
  * @property string|null $created_at
  * @property int|null $created_by
  * @property string|null $updated_at
@@ -45,7 +46,7 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['body'], 'string'],
+            [['body','image'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['created_by'], 'default', 'value' => null],
             [['created_by','created_at','updated_by','updated_at'], 'integer'],
@@ -64,6 +65,7 @@ class Article extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'body' => 'Body',
+            'image' => 'Image',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
