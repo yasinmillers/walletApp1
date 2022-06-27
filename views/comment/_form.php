@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'body')->textInput(['rows' =>6]) ?>
+    <?= $form->field($model, 'body')->textInput(['rows' =>6])->label("Enter your comment") ?>
 
 
     <div class="form-group">
