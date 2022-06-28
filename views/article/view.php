@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
         <div>
             <?php echo Html::encode($model->body); ?>
+
         </div>
     </div>
 
