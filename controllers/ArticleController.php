@@ -94,10 +94,11 @@ class ArticleController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->save();
-                $title=$model->title;
                 $image=UploadedFile::getInstance($model,'image');
-                $imgName= 'article.'$title . '.'.$image->getExtension();
-                $image->saveAs('.'$imgName);
+                $imgName= 'article.'.$image->getExtension();
+                $image->saveAs('../uploads/'.$imgName);
+                $model->image=$imgName;
+                $model->save();
 
                 return $this->redirect(['view', 'id' => $model->id]);
             }
