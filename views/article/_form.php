@@ -15,9 +15,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'image ')->fileInput()->label("image") ?>
+    <?= $form->field($model, 'image')->fileInput()->label("image") ?>
 
-    <div class="form-group">
+    <div class="form-group">article
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
