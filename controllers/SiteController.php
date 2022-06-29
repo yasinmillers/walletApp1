@@ -66,7 +66,8 @@ class SiteController extends Controller
      * @return string
      */
     public function actionIndex()
-    {$model = new Video();
+    {
+        $model = new Video();
         // fetched all videos from all the db
         $videos = Video::find()->orderBy('created_at DESC');
         $dataProvider = new ActiveDataProvider([
@@ -91,26 +92,26 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        $this->layout='authlayerout';
+        $this->layout = 'authlayerout';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-        $request= Yii::$app->request;
+        $request = Yii::$app->request;
         $model = new User();
         if ($request->isPost && $model->load($request->post())) {
             $username = $model->username;
             //check username
             $check_1 = User::findByUsername($username);
-            if ($check_1){
+            if ($check_1) {
                 // checking the password
-                if ($check_1->validatePassword($model->password)){
+                if ($check_1->validatePassword($model->password)) {
                     // the passwords are matching, login the user
                     Yii::$app->user->login($check_1);
                     Yii::$app->session->setFlash("success", "Logged in");
-                }else{
+                } else {
                     Yii::$app->session->setFlash("error", "Mo user associated with the given password");
                 }
-            }else{
+            } else {
                 Yii::$app->session->setFlash("error", "Mo user associated with the given username");
             }
             return $this->goBack();
@@ -126,14 +127,14 @@ class SiteController extends Controller
      */
     public function actionRegister()
     {
-        $this->layout='authlayerout';
+        $this->layout = 'authlayerout';
         $model = new User();
         $request = Yii::$app->request;
-        if ($request->isPost && $model->load($request->post())){
+        if ($request->isPost && $model->load($request->post())) {
             $model->password = Yii::$app->security->generatePasswordHash($model->password);
-            $model->authKey = Yii::$app->security->generateRandomString(70).time();
-            $model->accessToken = time().Yii::$app->security->generateRandomString();
-            if ($model->save()){
+            $model->authKey = Yii::$app->security->generateRandomString(70) . time();
+            $model->accessToken = time() . Yii::$app->security->generateRandomString();
+            if ($model->save()) {
                 Yii::$app->session->setFlash("success", "Account created successfully, login now");
                 return $this->redirect(['login']);
             }
@@ -187,14 +188,13 @@ class SiteController extends Controller
 
 
         // renders a view named "view" and applies a layout to it
-        return $this->render('video', [
-
-        ]);
+        return $this->render('video', []);
     }
 
 
 
-    public function actionUpload() {
+    public function actionUpload()
+    {
         $model = new UploadImageForm();
         if (Yii::$app->request->isPost) {
             $model->image = UploadedFile::getInstance($model, 'image');
@@ -206,6 +206,4 @@ class SiteController extends Controller
         }
         return $this->render('upload', ['model' => $model]);
     }
-
-
 }
